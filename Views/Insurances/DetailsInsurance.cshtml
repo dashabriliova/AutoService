@@ -1,0 +1,58 @@
+﻿@model Insurance
+
+@{
+    ViewData["Title"] = "Страховка";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Страховка</h4>
+</div>
+
+<table class="table table-borderless">
+    <tr align="center">
+        <th>
+            <strong>
+                Наименование
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Гос. номер
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Действует с
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Действует до
+            </strong>
+        </th>
+    </tr>
+    @foreach (Insurance item in ViewBag.item)
+    {
+
+        <tr align="center">
+            <td>@item.Auto.AutoName</td>
+            <td>@item.Auto.AutoNumber</td>
+            <td>@item.InsuranceDate.ToString("MM.yyyy")</td>
+            @if (DateTime.Now > item.InsuranceDateProlongation)
+            {
+                <td style="color:red" title="Срок действия страховки инстек!">
+                @item.InsuranceDateProlongation.ToString("dd.MM.yyyy")</td>
+            }
+            else if (DateTime.Now > item.InsuranceDateProlongation.AddMonths(-1))
+            {
+                <td style="color:orange" title="Срок действия страховки инстекает!">
+                @item.InsuranceDateProlongation.ToString("dd.MM.yyyy")</td>
+            }
+            else
+            {
+                <td>@item.InsuranceDateProlongation.ToString("dd.MM.yyyy")</td>
+            }
+        </tr>
+    }
+    </table>
+<a class="btn btn-primary" asp-controller="Auto" asp-action="Index">К списку автомобилей</a>
+

@@ -1,0 +1,36 @@
+﻿@model Inspection
+@{
+    ViewData["Title"] = "Редактирование технического осмотра";
+}
+<div class="bg-primary m-1 p-1 text-center text-white">
+    <h4>Редактирование записи о техническом осмотре</h4>
+</div>
+
+<form asp-action="EditInspection" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="InspectionId" />
+    <div class="form-group">
+        <label asp-for="AutoId">Гос. номер</label>
+        <select asp-for="AutoId" class="form-control" asp-items="ViewBag.AutoId"></select>
+        <span asp-validation-for="AutoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="InspectionDate">Дата прохождения</label>
+        <input asp-for="InspectionDate" type="date" class="form-control" />
+        <span asp-validation-for="InspectionDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="InspectionMonthNext">Дата продления</label>
+        <input asp-for="InspectionMonthNext" type="date" class="form-control" />
+        <span asp-validation-for="InspectionMonthNext" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

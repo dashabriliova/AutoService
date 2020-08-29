@@ -1,0 +1,45 @@
+﻿@model Insurance
+@{
+    ViewData["Title"] = "Удаление";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Подтвержение удаления страховки @Model.Auto.AutoName </h4>
+</div>
+<div>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            Наименование
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Auto.AutoName
+        </dd>
+        <dt class="col-sm-2">
+            Гос. номер
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Auto.AutoNumber
+        </dd>
+
+        <dt class="col-sm-2">
+            Действует до
+        </dt>
+        <dd class="col-sm-10">
+            @Model.InsuranceDate.ToString("MM.yyyy")
+        </dd>
+        <dt class="col-sm-2">
+            Дата продления
+        </dt>
+        <dd class="col-sm-10">
+            @Model.InsuranceDateProlongation.ToString("MM.yyyy")
+        </dd>
+    </dl>
+    <hr />
+
+    <form asp-action="Delete" asp-route-id="@Model.InsuranceId">
+        <input type="hidden" asp-for="InsuranceId" />
+        <button type="submit" class="btn btn-outline-danger">Удалить</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+    </form>
+</div>

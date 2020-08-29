@@ -1,0 +1,41 @@
+﻿@model Driver
+@{
+    ViewData["Title"] = "Удаление";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Подтвержение удаления @Model.DriverFullName</h4>
+</div>
+<div>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            Фото
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/images/@Model.DriverImage"
+                 alt='NoImage'
+                 class="rounded"
+                 height="200" />
+        </dd>
+        <dt class="col-sm-2">
+            ФИО
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DriverFullName
+        </dd>
+        <dt class="col-sm-2">
+            Телефон
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DriverPhone
+        </dd>
+    </dl>
+    <hr />
+
+    <form asp-action="Delete" asp-route-id="@Model.DriverId">
+        <input type="hidden" asp-for="DriverId" />
+        <button type="submit" class="btn btn-outline-danger">Удалить</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+    </form>
+</div>

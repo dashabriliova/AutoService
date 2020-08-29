@@ -1,0 +1,38 @@
+﻿@model Auto
+@{
+    ViewData["Title"] = "Удаление";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Подтвержение удаления @Model.AutoName</h4>
+</div>
+<div>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            Наименование
+        </dt>
+        <dd class="col-sm-10">
+            @Model.AutoName
+        </dd>
+        <dt class="col-sm-2">
+            Гос. номер
+        </dt>
+        <dd class="col-sm-10">
+            @Model.AutoNumber
+        </dd>
+        <dt class="col-sm-2">
+            VIN код
+        </dt>
+        <dd class="col-sm-10">
+            @Model.AutoVIN
+        </dd>
+    </dl>
+    <hr />
+
+    <form asp-action="Delete" asp-route-id="@Model.AutoId">
+        <input type="hidden" asp-for="AutoId" />
+        <button type="submit" class="btn btn-outline-danger">Удалить</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+    </form>
+</div>

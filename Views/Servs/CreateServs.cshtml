@@ -1,0 +1,43 @@
+﻿@model Serv
+
+@{
+    ViewData["Title"] = "Добавление технического обслуживания";
+}
+<div class="bg-primary m-1 p-1 text-center text-white">
+    <h4>Добавление технического обслуживания</h4>
+</div>
+<form asp-action="CreateServs">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="AutoId">Гос. номер</label>
+        <select asp-for="AutoId" class="form-control" asp-items="ViewBag.AutoId"></select>
+        <span asp-validation-for="AutoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServDate">Дата обслуживания</label>
+        <input asp-for="ServDate" type="date" class="form-control" />
+        <span asp-validation-for="ServDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServNaim">Наименование проведенных работ</label>
+        <input asp-for="ServNaim"  class="form-control" />
+        <span asp-validation-for="ServNaim" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ServPokaz">Показатели спидометра/одометра</label>
+        <input asp-for="ServPokaz" class="form-control" />
+        <span asp-validation-for="ServPokaz" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DriverId">Водитель</label>
+        <select asp-for="DriverId" class="form-control" asp-items="ViewBag.DriverId"></select>
+        <span asp-validation-for="DriverId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

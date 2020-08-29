@@ -1,0 +1,84 @@
+﻿@model PaginatedList<AutoService.DAL.Entities.Serv>
+
+@{
+    ViewData["Title"] = "Техническое обслуживание";
+}
+
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<div class="bg-primary m-1 p-1 text-center text-white">
+    <h4>Техническое обслуживание</h4>
+</div>
+<p>
+    <a class="btn btn-outline-info" asp-action="CreateServs">
+        <span class="fa fa-plus-circle">Добавить данные</span>
+    </a>
+</p>
+<div class="table table-sm table-bordered"></div>
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-pageNo="@(Model.PageIndex-1)"
+   class="btn btn-default @prevDisabled">
+    Предыдущая
+</a>
+<a asp-action="Index"
+   asp-route-pageNo="@(Model.PageIndex+1)"
+   class="btn btn-default @nextDisabled">
+    Следующая
+</a>
+<div class="table table-sm table-bordered"></div>
+<table class="table table-sm table-borderless">
+    <tr align="center">
+        <th>Наименование</th>
+        <th>Гос. номер</th>
+        <th>Дата проведения</th>
+        <th>Наименование работ</th>
+        <th>Показатели спидометра/одометра</th>
+        <th>Водитель</th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="4" class="text-center">Нет данных о техническом обслуживании</td>
+        </tr>
+    }
+    else
+    {
+        foreach (Serv serv in Model)
+        {
+            <tr align="center">
+                <td>@serv.Auto.AutoName</td>
+                <td>@serv.Auto.AutoNumber</td>
+                <td>@serv.ServDate.ToString("dd.MM.yyyy")</td>
+                <td>@serv.ServNaim</td>
+                <td>@serv.ServPokaz</td>
+                <td>@serv.Driver.DriverFullName</td>
+                <td>
+                    <a class="btn btn-outline-info" asp-action="PrintServs" asp-route-servsid="@serv.ServId">
+                        <span class="fa fa-print"></span>
+                    </a>
+                </td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <form asp-action="DeleteServs" asp-route-id="@serv.ServId" method="post">
+                            <a class="btn btn-outline-info" asp-action="EditServs" asp-route-id="@serv.ServId">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                            <button type="submit" class="btn btn-outline-danger">
+                                <span class="fa fa-close"></span>
+                            </button>
+                        </form>
+                    </td>
+                }
+
+            </tr>
+        }
+    }
+</table>

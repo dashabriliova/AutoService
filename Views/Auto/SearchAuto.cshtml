@@ -1,0 +1,54 @@
+﻿@model AutoListViewModel
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@{
+    ViewData["Title"] = "Результаты поиска";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Результаты поиска</h4>
+</div>
+
+<div class="table table-sm table-bordered"></div>
+<table class="table table-sm table-hover table-borderless">
+
+    <tr align="center">
+        <th>Фото</th>
+        <th>Наименование</th>
+        <th>Гос. номер</th>
+        <th>VIN код</th>
+        <th>Год выпуска</th>
+    </tr>
+    @if (Model.Autos.Count() == 0)
+    {
+        <tr>
+            <td colspan="2" class="text-center">Нет автотранспорта</td>
+        </tr>
+    }
+    else
+    {
+        foreach (Auto auto in Model.Autos)
+        {
+            <tr align="center">
+                <td>
+                    <img src="~/images/@auto.AutoImage"
+                         alt='NoImage'
+                         class="rounded"
+                         width="300" />
+                </td>
+                <td>@auto.AutoName</td>
+                <td>@auto.AutoNumber</td>
+                <td>@auto.AutoVIN</td>
+                <td>@auto.AutoYear.ToString("MM.yyyy")</td>
+                <td>
+                    <a class="btn btn-outline-success" asp-action="DetailsAuto" asp-route-id="@auto.AutoId">Детали</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<a class="btn btn-primary" asp-controller="Auto" asp-action="Index">К списку автомобилей</a>
+

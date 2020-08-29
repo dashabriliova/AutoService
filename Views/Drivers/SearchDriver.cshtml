@@ -1,0 +1,51 @@
+﻿@model DriverListViewModel
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@{
+    ViewData["Title"] = "Результаты поиска";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Результаты поиска</h4>
+</div>
+
+<div class="table table-sm table-bordered"></div>
+<table class="table table-sm table-hover table-borderless">
+    <tr align="center">
+        <th>Фото</th>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Телефон</th>
+        <th>Адрес</th>
+        <th>Категории прав</th>
+    </tr>
+    @if (Model.Drivers.Count() == 0)
+    {
+        <tr>
+            <td colspan="4" class="bg-primary m-1 p-1 text-white">Нет водителей</td>
+        </tr>
+    }
+    else
+    {
+        foreach (Driver driver in Model.Drivers)
+        {
+            <tr align="center">
+                <td>
+                    <img src="~/images/@driver.DriverImage"
+                         alt='NoImage'
+                         class="rounded"
+                         height="200" />
+                </td>
+                <td>@driver.DriverFullName</td>
+                <td>@driver.DriverDB.ToString("dd.MM.yyyy")</td>
+                <td>@driver.DriverPhone</td>
+                <td>@driver.DriverAdress</td>
+                <td>@driver.DriverCategory</td>
+            </tr>
+        }
+    }
+</table>
+<a class="btn btn-primary" asp-controller="Drivers" asp-action="Index">К списку водителей</a>

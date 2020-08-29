@@ -1,0 +1,94 @@
+﻿@model PaginatedList<Auto>
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@{
+    ViewData["Title"] = "Автотранспорт";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Автомобили</h4>
+</div>
+<form asp-action="SearchAuto" method="get">
+    <div class="form-inline form-group">
+        <label class="control-label">Введите строку для поиска по наименованию:</label>
+        <input name="name" class="form-control" />
+        <input type="submit" value="Поиск" class="btn btn-outline-dark">
+    </div>
+</form>
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a class="btn btn-outline-info" asp-action="CreateAuto">
+            <span class="fa fa-plus-circle">Добавить автотранспорт</span>
+        </a>
+    </p>
+}
+<div class="table table-sm table-bordered"></div>
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-pageNo="@(Model.PageIndex-1)"
+   class="btn btn-default @prevDisabled">
+    Предыдущая
+</a>
+<a asp-action="Index"
+   asp-route-pageNo="@(Model.PageIndex+1)"
+   class="btn btn-default @nextDisabled">
+    Следующая
+</a>
+<div class="table table-sm table-bordered"></div>
+<table class="table table-sm table-hover table-borderless">
+
+    <tr align="center">
+        <th>Фото</th>
+        <th>Наименование</th>
+        <th>Гос. номер</th>
+        <th>VIN код</th>
+        <th>Год выпуска</th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="2" class="text-center">Нет автотранспорта</td>
+        </tr>
+    }
+    else
+    {
+        foreach (Auto auto in Model)
+        {
+            <tr align="center">
+                <td>
+                    <img src="~/images/@auto.AutoImage"
+                         alt='NoImage'
+                         class="rounded"
+                         width="300" />
+                </td>
+                <td>@auto.AutoName</td>
+                <td>@auto.AutoNumber</td>
+                <td>@auto.AutoVIN</td>
+                <td>@auto.AutoYear.ToString("MM.yyyy")</td>
+                <td>
+                    <a class="btn btn-outline-success" asp-action="DetailsAuto" asp-route-id="@auto.AutoId">Детали</a>
+                </td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <form asp-action="DeleteAuto" asp-route-id="@auto.AutoId" >
+                            <a class="btn btn-outline-info" asp-action="EditAuto" asp-route-id="@auto.AutoId">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                            <button type="submit" class="btn btn-outline-danger">
+                                <span class="fa fa-close"></span>
+                            </button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        }
+    }
+</table>

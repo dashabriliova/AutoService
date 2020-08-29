@@ -1,0 +1,63 @@
+﻿@model Inspection
+
+@{
+    ViewData["Title"] = "Технический осмотр";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Технический осмотр</h4>
+</div>
+
+<table class="table table-borderless">
+    <tr align="center">
+        <th>
+            <strong>
+                Наименование
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Гос. номер
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Текущий
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Следующий
+            </strong>
+        </th>
+    </tr>
+    @foreach(Inspection item in ViewBag.item)
+    {
+            <tr align="center">
+                <td>@item.Auto.AutoName</td>
+                <td>@item.Auto.AutoNumber</td>
+                <td>@item.InspectionDate.ToString("MM.yyyy")</td>
+                @if (DateTime.Now > item.InspectionMonthNext)
+                {
+                    <td style="color:red" title="Срок действия технического осмотра истек!">
+                        @item.InspectionMonthNext.ToString("MM.yyyy")
+                    </td>
+                }
+                else if (DateTime.Now > item.InspectionMonthNext.AddMonths(-1))
+                {
+                    <td style="color:orange" title="Срок действия технического осмотра истекает!">
+                        @item.InspectionMonthNext.ToString("MM.yyyy")
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        @item.InspectionMonthNext.ToString("MM.yyyy")
+                    </td>
+                }
+            </tr>
+    }
+
+
+</table>
+<a class="btn btn-primary" asp-controller="Auto" asp-action="Index">К списку автомобилей</a>
+

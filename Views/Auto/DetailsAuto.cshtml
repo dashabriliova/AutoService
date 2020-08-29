@@ -1,0 +1,71 @@
+﻿@model Auto
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@{
+    ViewData["Title"] = Model.AutoName;
+}
+<div class="bg-primary m-1 p-1 text-white">
+    <h4>@Model.AutoName</h4>
+</div>
+
+<table class="table table-borderless">
+    <tr align="center">
+        <td rowspan="9">
+            <img src="~/images/@Model.AutoImage"
+                 alt='NoImage'
+                 class="rounded"
+                 width="400" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Наименование:
+            </strong>
+        </td>
+        <td>@Model.AutoName</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Гос. номер:
+            </strong>
+        </td>
+        <td>@Model.AutoNumber</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                VIN код:
+            </strong>
+        </td>
+        <td>@Model.AutoVIN</td>
+    </tr>
+    <tr>
+        <td>
+            <strong>
+                Год выпуска:
+            </strong>
+        </td>
+        <td>@Model.AutoYear.ToString("yyyy")</td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center">
+            <a class="btn btn-outline-info" asp-controller="Inspection" asp-action="DetailsInspection" asp-route-autoid="@Model.AutoId">
+                <span class="fa fa-automobile">Тех.осмотр</span>
+            </a>
+            <a class="btn btn-outline-info" asp-controller="Insurances" asp-action="DetailsInsurance" asp-route-autoid="@Model.AutoId">
+                <span class="fa fa-automobile">Страховка</span>
+            </a>
+            <a class="btn btn-outline-info" asp-controller="Servs" asp-action="DetailsServs" asp-route-autoid="@Model.AutoId">
+                <span class="fa fa-automobile">Тех.обслуживание</span>
+            </a>
+
+        </td>
+    </tr>
+</table>
+<a class="btn btn-primary" asp-controller="Auto" asp-action="Index">Назад</a>

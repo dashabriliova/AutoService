@@ -1,0 +1,20 @@
+﻿@model string
+@{
+    ViewData["Title"] = "Роли";
+}
+
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Добавление роли</h4>
+</div>
+<div asp-validation-summary="All" class="text-danger"></div>
+<form asp-action="CreateRole" method="post">
+    <div class="form-group">
+        <label for="name"></label>
+        <input name="name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

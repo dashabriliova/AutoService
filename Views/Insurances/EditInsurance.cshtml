@@ -1,0 +1,34 @@
+﻿@model AutoService.DAL.Entities.Insurance
+
+@{
+    ViewData["Title"] = "Редактирование";
+}
+<div class="bg-primary m-1 p-1 text-center text-white">
+    <h4>Редактирование записи о страховке</h4>
+</div>
+<form asp-action="EditInsurance" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="InsuranceId" />
+    <div class="form-group">
+        <label asp-for="AutoId">Гос. номер</label>
+        <select asp-for="AutoId" class="form-control" asp-items="ViewBag.AutoId"></select>
+        <span asp-validation-for="AutoId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="InsuranceDate">Дата оплаты</label>
+        <input asp-for="InsuranceDate" type="date" class="form-control" />
+        <span asp-validation-for="InsuranceDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="InsuranceDateProlongation">Дата продления</label>
+        <input asp-for="InsuranceDateProlongation" type="date" class="form-control" />
+        <span asp-validation-for="InsuranceDateProlongation" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

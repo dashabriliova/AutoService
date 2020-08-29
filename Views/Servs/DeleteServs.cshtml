@@ -1,0 +1,58 @@
+﻿@model Serv
+@{
+    ViewData["Title"] = "Удаление";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Подтвержение удаления страховки @Model.Auto.AutoName </h4>
+</div>
+<div>
+    <hr />
+
+    <dl class="row">
+        <dt class="col-sm-4">
+            Наименование
+        </dt>
+        <dd class="col-sm-8">
+            @Model.Auto.AutoName
+        </dd>
+        <dt class="col-sm-4">
+            Гос. номер
+        </dt>
+        <dd class="col-sm-8">
+            @Model.Auto.AutoNumber
+        </dd>
+
+        <dt class="col-sm-4">
+            Дата проведения
+        </dt>
+        <dd class="col-sm-8">
+            @Model.ServDate.ToString("dd.MM.yyyy")
+        </dd>
+        <dt class="col-sm-4">
+            Наименование работ
+        </dt>
+        <dd class="col-sm-8">
+            @Model.ServNaim
+        </dd>
+        <dt class="col-sm-4">
+            Показатели спидометра/одометра
+        </dt>
+        <dd class="col-sm-8">
+            @Model.ServPokaz
+        </dd>
+        <dt class="col-sm-4">
+            Водитель
+        </dt>
+        <dd class="col-sm-8">
+            @Model.Driver.DriverFullName
+        </dd>
+
+    </dl>
+    <hr />
+
+    <form asp-action="Delete" asp-route-id="@Model.ServId">
+        <input type="hidden" asp-for="ServId" />
+        <button type="submit" class="btn btn-outline-danger">Удалить</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Отмена</a>
+    </form>
+</div>

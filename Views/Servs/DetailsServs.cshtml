@@ -1,0 +1,52 @@
+﻿@model Serv
+
+@{
+    ViewData["Title"] = "Техническое обслуживание ";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Техническое обслуживание</h4>
+</div>
+
+<table class="table table-borderless">
+    <tr align="center">
+        <th>
+            <strong>
+                Наименование
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Гос. номер
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Дата обслуживания
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Наименование проведенных работ
+            </strong>
+        </th>
+        <th>
+            <strong>
+                Показатели спидометра/одометра
+            </strong>
+        </th>
+    </tr>
+    @foreach (Serv item in ViewBag.item)
+    {
+        <tr align="center">
+            <td>@item.Auto.AutoName</td>
+            <td>@item.Auto.AutoNumber</td>
+            <td>@item.ServDate.ToString("MM.yyyy")</td>
+            <td>@item.ServNaim</td>
+            <td>@item.ServPokaz</td>
+        </tr>
+    }
+
+
+</table>
+<a class="btn btn-primary" asp-controller="Auto" asp-action="Index">К списку автомобилей</a>
+

@@ -1,0 +1,94 @@
+﻿@model PaginatedList<Driver>
+<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@{
+    ViewData["Title"] = "Водители";
+}
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Водители</h4>
+</div>
+<form asp-action="SearchDriver" method="get">
+    <div class="form-inline form-group">
+        <label class="control-label">Введите строку для поиска по ФИО:</label>
+        <input name="fullName" class="form-control" />
+        <input type="submit" value="Поиск" class="btn btn-outline-dark">
+    </div>
+</form>
+
+@if (User.IsInRole("admin"))
+{
+    <p>
+        <a class="btn btn-outline-info" asp-action="CreateDriver">
+            <span class="fa fa-plus-circle">Добавить водителя</span>
+        </a>
+    </p>
+
+}
+<div class="table table-sm table-bordered"></div>
+@{
+    var prevDisabled = !Model.PreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.NextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-pageNo="@(Model.PageIndex-1)"
+   class="btn btn-default @prevDisabled">
+    Предыдущая
+</a>
+<a asp-action="Index"
+   asp-route-pageNo="@(Model.PageIndex+1)"
+   class="btn btn-default @nextDisabled">
+    Следующая
+</a>
+<div class="table table-sm table-bordered"></div>
+<table class="table table-sm table-hover table-borderless">
+    <tr align="center">
+        <th>Фото</th>
+        <th>ФИО</th>
+        <th>Дата рождения</th>
+        <th>Телефон</th>
+        <th>Адрес</th>
+        <th>Категории прав</th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
+        <tr>
+            <td colspan="4" class="bg-primary m-1 p-1 text-white">Нет водителей</td>
+        </tr>
+    }
+    else
+    {
+        foreach (Driver driver in Model)
+        {
+            <tr align="center">
+                <td>
+                    <img src="~/images/@driver.DriverImage"
+                         alt='NoImage'
+                         class="rounded"
+                         height="200" />
+                </td>
+                <td>@driver.DriverFullName</td>
+                <td>@driver.DriverDB.ToString("dd.MM.yyyy")</td>
+                <td>@driver.DriverPhone</td>
+                <td>@driver.DriverAdress</td>
+                <td>@driver.DriverCategory</td>
+                @if (User.IsInRole("admin"))
+                {
+                    <td>
+                        <form asp-action="DeleteDriver" asp-route-id="@driver.DriverId" method="post">
+                            <a class="btn btn-outline-info" asp-action="EditDriver" asp-route-id="@driver.DriverId">
+                                <span class="fa fa-pencil"></span>
+                            </a>
+                            <button type="submit" class="btn btn-outline-danger">
+                                <span class="fa fa-close"></span>
+                            </button>
+                        </form>
+                    </td>
+                }
+            </tr>
+        }
+    }
+</table>

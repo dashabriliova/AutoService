@@ -1,0 +1,45 @@
+﻿@model CreateDriverModel
+
+
+<div class="bg-primary m-1 p-1 text-white text-center">
+    <h4>Добавление водителя</h4>
+</div>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="CreateDriver" method="post">
+    <div class="form-group">
+        <label asp-for="DriverFullName">ФИО</label>
+        <input asp-for="DriverFullName" class="form-control" />
+        <span asp-validation-for="DriverFullName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DriverDB">Дата рождения</label>
+        <input asp-for="DriverDB" type="date" class="form-control" />
+        <span asp-validation-for="DriverDB" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DriverPhone">Телефон</label>
+        <input asp-for="DriverPhone" type="tel" class="form-control" />
+        <span asp-validation-for="DriverPhone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DriverAdress">Адрес</label>
+        <input asp-for="DriverAdress" class="form-control" />
+        <span asp-validation-for="DriverAdress" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DriverCategory">Категории</label>
+        <input asp-for="DriverCategory" class="form-control" />
+        <span asp-validation-for="DriverCategory" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DriverImage">Фото</label>
+        <input asp-for="DriverImage" type="file" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+    <a asp-action="Index" class="btn btn-secondary">Отмена</a>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
