@@ -1,0 +1,18 @@
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\bin\Debug\netcoreapp3.1\AutoService.DAL.deps.json
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\bin\Debug\netcoreapp3.1\AutoService.DAL.dll
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.AssemblyInfoInputs.cache
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.AssemblyInfo.cs
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\bin\Debug\netcoreapp3.1\AutoService.DAL.pdb
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.csproj.CoreCompileInputs.cache
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.dll
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.pdb
+C:\Users\berez\Desktop\ДП\Новая папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.csprojAssemblyReference.cache
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\bin\Debug\netcoreapp3.1\AutoService.DAL.deps.json
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\bin\Debug\netcoreapp3.1\AutoService.DAL.dll
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\bin\Debug\netcoreapp3.1\AutoService.DAL.pdb
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.csprojAssemblyReference.cache
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.AssemblyInfoInputs.cache
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.AssemblyInfo.cs
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.csproj.CoreCompileInputs.cache
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.dll
+C:\Users\berez\Desktop\ДП\Новая_папка\AutoService.DAL\obj\Debug\netcoreapp3.1\AutoService.DAL.pdb
